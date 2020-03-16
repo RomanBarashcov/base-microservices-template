@@ -1,0 +1,39 @@
+version: '3'
+services:
+  nginx:
+    container_name: nginx
+    image: nginx
+    build:
+      context: ../config/server
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    depends_on:
+      - user-service-db
+
+  user-service-db:
+    container_name: user-service-db
+    image: user-service-db
+    build:
+      context: ../config/db
+      dockerfile: Dockerfile
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_HOST=user-service-db
+      - POSTGRES_DB=same_db
+
+  user-service-api:
+    container_name: user-service-api
+    image: user-service-api
+    build:
+      context: ../user-service
+      dockerfile: Dockerfile
+    ports:
+      - 4001:4000
+    depends_on:
+      - user-service-db
+    links:
+      - user-service-db
