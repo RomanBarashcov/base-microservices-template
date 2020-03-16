@@ -3,7 +3,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const usersRouter = require('./src/api/users');
+const moviesRouter = require('./src/api/movies');
 
 const app = express();
 
@@ -12,6 +12,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/api/users', usersRouter);
+app.use('/api/movies', moviesRouter);
 
 module.exports = app;

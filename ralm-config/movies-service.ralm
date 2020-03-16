@@ -1,0 +1,32 @@
+#%RAML 1.0
+title: Movies Service
+version: v1
+baseUri: /
+
+types:
+  Movie:
+    properties:
+      id: number
+      title: string
+      description: string
+      price: number
+      release: date
+
+  MoviePremieres:
+      type: Movie []
+
+resourceTypes:
+  GET:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<item>>
+
+/movies:
+  /premieres:
+    type:  { Collection: {item : MoviePremieres } }
+
+  /{id}:
+    type:  { Collection: {item : Movie } }
