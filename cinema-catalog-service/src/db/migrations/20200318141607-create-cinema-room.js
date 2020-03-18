@@ -1,8 +1,8 @@
 module.exports = {
 
   up: (queryInterface, Sequelize) => {
-    
-    return queryInterface.createTable('Movies', {
+
+    return queryInterface.createTable('CinemaRooms', {
 
       id: {
         allowNull: false,
@@ -11,31 +11,25 @@ module.exports = {
         type: Sequelize.INTEGER
       },
 
-      title: {
+      name: {
         type: Sequelize.STRING
       },
 
-      description: {
+      capacity: {
         type: Sequelize.STRING
       },
 
-      runtime: {
-        type: Sequelize.INTEGER
-      },
-  
       format: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER //IMAX, Normal
       },
-
-      release: {
-        type: Sequelize.DATE
-      }
 
     });
+
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Movies');
+
+    return queryInterface.dropTable('CinemaRooms');
   }
 
 };
