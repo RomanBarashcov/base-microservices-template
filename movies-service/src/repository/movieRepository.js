@@ -3,7 +3,7 @@ const db = require("../db/models/index");
 const getMovies = async () => {
     try {
 
-        const movies = await db.Movies.findAll().map(i => i.dataValues);
+        const movies = await db.Movie.findAll().map(i => i.dataValues);
         return movies;
 
     } catch (err) {
@@ -11,10 +11,10 @@ const getMovies = async () => {
     }
 };
 
-const getMovie = async (id) => {
+const getMovieById = async (id) => {
     try {
 
-        const movies = await db.Movies.findOne({where: {id: id}});
+        const movies = await db.Movie.findOne({where: {id: id}});
         return movies;
 
     } catch (err) {
@@ -24,5 +24,5 @@ const getMovie = async (id) => {
 
 module.exports = {
     getMovies,
-    getMovie
+    getMovieById
 }

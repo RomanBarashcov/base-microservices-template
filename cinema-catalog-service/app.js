@@ -3,7 +3,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const cinemasRouter = require('./src/api/cinemas');
+const cinemasRouter = require('./src/api/index');
 
 const app = express();
 

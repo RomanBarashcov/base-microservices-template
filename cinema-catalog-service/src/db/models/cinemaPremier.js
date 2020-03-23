@@ -20,7 +20,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     }
 
-  }, {});
+  }, {
+    timestamps: false
+  });
 
   CinemaPremier.associate = function(models) {
     // associations can be defined here

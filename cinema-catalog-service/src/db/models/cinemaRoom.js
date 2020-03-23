@@ -14,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER //IMAX, Normal
     },
 
-  }, {});
+  }, {
+    timestamps: false
+  });
 
   CinemaRoom.associate = function(models) {
     // associations can be defined here

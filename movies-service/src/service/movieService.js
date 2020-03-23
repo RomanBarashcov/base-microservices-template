@@ -1,9 +1,9 @@
 let repositories = null;
 
-const getMovies = async () => {
+const getAllMovies = async () => {
     try {
 
-        return repositories.movieRepository.getMovies();
+        return await repositories.movieRepository.getMovies();
 
     } catch (err) {
         console.error(err);
@@ -13,7 +13,7 @@ const getMovies = async () => {
 const getMovieById = async (id) => {
     try {
 
-        return repositories.movieRepository.getMovieById(id);
+        return await repositories.movieRepository.getMovieById(id);
 
     } catch (err) {
         console.error(err);
@@ -25,7 +25,7 @@ module.exports = (rep) => {
     repositories = rep;
 
     return {
-        getMovies,
+        getAllMovies,
         getMovieById
     }
 }

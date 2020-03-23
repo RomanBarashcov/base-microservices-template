@@ -13,6 +13,7 @@ module.exports = {
       dialect: 'postgres',
       port: 5432,
       timestamps: false,
+      operatorsAliases: false
 
   },
 

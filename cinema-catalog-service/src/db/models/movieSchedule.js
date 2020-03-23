@@ -1,6 +1,6 @@
-module.exports = (DataTypes, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
 
-  const MovieSchedule = DataTypes.define('MovieSchedule', {
+  const MovieSchedule = sequelize.define('MovieSchedule', {
 
     movieId: {
       type: DataTypes.INTEGER
@@ -38,7 +38,9 @@ module.exports = (DataTypes, DataTypes) => {
       type: DataTypes.DOUBLE
     }
 
-  }, {});
+  }, {
+    timestamps: false
+  });
 
   MovieSchedule.associate = function(models) {
     // associations can be defined here

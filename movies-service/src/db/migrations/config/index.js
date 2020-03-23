@@ -9,6 +9,7 @@ module.exports = {
         dialect: config.database.dialect,
         timestamps: config.database.timestamps,
         dialectOptions: config.database.dialectOptions,
+        operatorsAliases: config.database.operatorsAliases,
         seederStorage: "sequelize",
         seederStorageTableName: "SequelizeSeederMeta"
     }

@@ -6,22 +6,22 @@ let services = null;
 router.get('/', async (req, res, next) => {
     try {
 
-        let movies = services.movieService.getAllMovies();
-        res.status(status.OK).json(movies);
+        let movies = await services.movieService.getAllMovies();
+        res.status(200).json(movies);
 
     } catch (err) {
-        console.err(err);
+        console.error(err);
     }
 });
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
     try {
 
-        let movie = services.movieService.getMovieById(res.body.id);
-        res.status(status.OK).json(movie);
+        let movie = await services.movieService.getMovieById(req.params.id);
+        res.status(200).json(movie);
 
     } catch (err) {
-        console.err(err);
+        console.error(err);
     }
 });
 

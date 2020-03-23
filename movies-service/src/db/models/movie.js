@@ -22,7 +22,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE
     }
 
-  }, {});
+  }, {
+    timestamps: false
+  });
 
   Movie.associate = function(models) {
     // associations can be defined here

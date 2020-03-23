@@ -3,7 +3,7 @@ const db = require("../db/models/index");
 const getCinemasByCityId = async (id) => {
     try {
 
-        const cinemas = await db.Cinemas.findAll({where:{cityId: id}}).map(i => i.dataValues);
+        const cinemas = await db.Cinema.findAll({where:{cityId: id}}).map(i => i.dataValues);
         return cinemas;
 
     } catch (err) {
@@ -14,7 +14,7 @@ const getCinemasByCityId = async (id) => {
 const getCinemaById = async (id) => {
     try {
 
-        const cinema = await db.Cinemas.findOne({where: {id: id}});
+        const cinema = await db.Cinema.findOne({where: {id: id}});
         return cinema;
 
     } catch (err) {
@@ -25,7 +25,7 @@ const getCinemaById = async (id) => {
 const getCinemaScheduleByMovie = async (cityId, movieId) => {
     try {
 
-        const schedule = await db.MovieSchedules.findOne({where: {cityId: cityId, movieId}});
+        const schedule = await db.MovieSchedule.findOne({where: {cityId: cityId, movieId}});
         return schedule;
 
     } catch (err) {
