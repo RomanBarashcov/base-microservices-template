@@ -16,7 +16,7 @@ module.exports = {
       },
 
       capacity: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
 
       format: {

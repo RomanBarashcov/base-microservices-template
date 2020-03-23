@@ -1,32 +1,36 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
+let services = null;
 
-    let movies = [{
-        id: 1,
-        title: "Some Title1",
-        description: "Some Description1",
-        price: 100,
-        release: new Date()
-    },
-    {
-        id: 2,
-        title: "Some Title2",
-        description: "Some Description2",
-        price: 100,
-        release: new Date()
-    },
-    {
-        id: 3,
-        title: "Some Title3",
-        description: "Some Description3",
-        price: 100,
-        release: new Date()
-    }];
+router.get('/', async (req, res, next) => {
+    try {
 
-    res.status(200).json({data: movies});
+        let movies = services.movieService.getAllMovies();
+        res.status(status.OK).json(movies);
 
+    } catch (err) {
+        console.err(err);
+    }
 });
 
-module.exports = router;
+router.get('/:id', (req, res, next) => {
+    try {
+
+        let movie = services.movieService.getMovieById(res.body.id);
+        res.status(status.OK).json(movie);
+
+    } catch (err) {
+        console.err(err);
+    }
+});
+
+module.exports = (ser) => {
+
+    services = ser;
+    
+    return {
+        router
+    }
+
+};

@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     capacity: {
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER
     },
 
     format: {

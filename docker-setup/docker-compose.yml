@@ -23,7 +23,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=root
       - POSTGRES_HOST=movies-service-db
-      - POSTGRES_DB=same_db
+      - POSTGRES_DB=movies-db
 
   movies-service-api:
     container_name: movies-service-api
@@ -37,3 +37,30 @@ services:
       - movies-service-db
     links:
       - movies-service-db
+
+  cinema-catalog-service-db:
+    container_name: cinema-catalog-service-db
+    image: cinema-catalog-service-db
+    build:
+      context: ../config/db
+      dockerfile: Dockerfile
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_HOST=cinema-catalog-service-db
+      - POSTGRES_DB=cinema-catalog-db
+
+  cinema-catalog-service-api:
+    container_name: cinema-catalog-service-api
+    image: cinema-catalog-service-api
+    build:
+      context: ../cinema-catalog-service
+      dockerfile: Dockerfile
+    ports:
+      - 4002:4000
+    depends_on:
+      - cinema-catalog-service-db
+    links:
+      - cinema-catalog-service-db

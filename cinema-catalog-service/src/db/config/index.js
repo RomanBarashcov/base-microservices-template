@@ -8,8 +8,8 @@ module.exports = {
 
       username: process.env.DB_USERNAME || 'postgres',
       password: process.env.DB_PASSWORD || 'root',
-      database: process.env.DB_NAME || 'cinema_catalog_db',
-      host: process.env.DB_HOST || 'localhost',
+      database: process.env.DB_NAME || 'cinema-catalog-db',
+      host: process.env.DB_HOST || 'cinema-catalog-service-db',
       dialect: 'postgres',
       port: 5432,
       timestamps: false,
