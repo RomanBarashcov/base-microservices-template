@@ -1,9 +1,10 @@
 let repositories = null;
+let adapters = null;
 
 const getCinemasByCity = async (id) => {
     try {
 
-        return repositories.cinemaRepository.getCinemasByCityId(id);
+        return await repositories.cinemaRepository.getCinemasByCityId(id);
 
     } catch (err) {
         console.error(err);
@@ -13,7 +14,7 @@ const getCinemasByCity = async (id) => {
 const getCinemaById = async (id) => {
     try {
 
-        return repositories.cinemaRepository.getCinemaById(id);
+        return await repositories.cinemaRepository.getCinemaById(id);
 
     } catch (err) {
         console.error(err);
@@ -23,16 +24,18 @@ const getCinemaById = async (id) => {
 const getCinemaScheduleByMovie = async (cityId, movieId) => {
     try {
 
-        return repositories.cinemaRepository.getCinemaScheduleByMovie(cityId, movieId);
+        let scheduleMovie = await repositories.cinemaRepository.getCinemaScheduleByMovie(cityId, movieId);
+        return await adapters.scheduleMovieAdaptor.executeAdaptation(scheduleMovie, movieId);
 
     } catch (err) {
         console.error(err);
     }
 };
 
-module.exports = (rep) => {
+module.exports = (rep, ads) => {
 
     repositories = rep;
+    adapters = ads;
 
     return {
         getCinemasByCity,

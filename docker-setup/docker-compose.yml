@@ -62,5 +62,9 @@ services:
       - 4002:4000
     depends_on:
       - cinema-catalog-service-db
+      - movies-service-api
     links:
       - cinema-catalog-service-db
+      - movies-service-api
+    environment:
+      - MOVIE_SERVICE_CONTAINER=movies-service-api

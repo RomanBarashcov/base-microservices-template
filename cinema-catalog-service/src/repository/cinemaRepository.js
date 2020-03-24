@@ -25,7 +25,12 @@ const getCinemaById = async (id) => {
 const getCinemaScheduleByMovie = async (cityId, movieId) => {
     try {
 
-        const schedule = await db.MovieSchedule.findOne({where: {cityId: cityId, movieId}});
+        const schedule = await db.sequelize.query(`SELECT cp."cinemaId", cp."movieId", c."name" , c."cityId", c.latitude , c.longitude 
+                                            FROM "CinemaPremiers" cp
+                                                LEFT JOIN "Cinemas" AS c ON cp."cinemaId" = c.id
+                                            WHERE c."cityId" = :cityId AND cp."movieId" = :movieId;`,
+        { replacements: { cityId: cityId, movieId: movieId }, type: db.Sequelize.QueryTypes.SELECT });
+
         return schedule;
 
     } catch (err) {

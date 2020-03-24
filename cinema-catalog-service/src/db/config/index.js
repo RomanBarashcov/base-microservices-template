@@ -3,6 +3,7 @@ module.exports = {
   env: process.env.NODE_ENV || 'development',
   host: process.env.HOST || 'https://localhost',
   port: process.env.PORT || 4000,
+  movieServiceContainer: process.env.MOVIE_SERVICE_CONTAINER,
 
   database: {
 

@@ -3,10 +3,10 @@ const router = express.Router();
 
 let services = null;
 
-router.get('/city/:cityId', (req, res, next) => {
+router.get('/city/:cityId', async (req, res, next) => {
     try {
 
-        const cinemas = services.cinemaService.getCinemasByCity(req.params.cityId);
+        const cinemas = await services.cinemaService.getCinemasByCity(req.params.cityId);
         res.status(200).json(cinemas)
 
     } catch (err) {
@@ -14,10 +14,10 @@ router.get('/city/:cityId', (req, res, next) => {
     }
   });
 
-router.get('/:cinemaId', (req, res, next) => {
+router.get('/:cinemaId', async (req, res, next) => {
     try {
 
-        const cinema = services.cinemaService.getCinemaById(req.params.cinemaId);
+        const cinema = await services.cinemaService.getCinemaById(req.params.cinemaId);
         res.status(200).json(cinema)
 
     } catch (err) {
@@ -25,10 +25,10 @@ router.get('/:cinemaId', (req, res, next) => {
     }
 });
 
-router.get('/:cityId/:movieId', (req, res, next) => {
+router.get('/:cityId/:movieId', async (req, res, next) => {
     try {
 
-        const schedules = services.cinemaService.getCinemaScheduleByMovie(req.params.cityId, req.params.movieId);
+        const schedules = await services.cinemaService.getCinemaScheduleByMovie(req.params.cityId, req.params.movieId);
         res.status(200).json(schedules);
 
     } catch (err) {
